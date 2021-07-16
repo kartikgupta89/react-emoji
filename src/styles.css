@@ -1,0 +1,28 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  background-color: #f5f3ff;
+  height: 90%;
+  width: 90%;
+  margin: 0.5rem;
+  padding: 0.5rem;
+}
+
+input {
+  margin: 0.5rem;
+  padding: 0.2rem;
+  border: dotted grey 0.3rem;
+  text-align: center;
+  font-size: 3rem;
+  height: 3.5rem;
+  width: 10rem;
+}
+
+footer {
+  text-align: right;
+  font-size: small;
+  font-style: italic;
+  color: black;
+  background-color: lightcyan;
+  padding: 0.2rem;
+}
