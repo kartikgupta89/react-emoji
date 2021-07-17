@@ -470,12 +470,12 @@ const emojiDictionary = {
 
 var emojisWeKnow = Object.keys(emojiDictionary);
 var emojisRand = emojisWeKnow.sort(() => 0.5 - Math.random()).slice(0, 5);
-var emojisRand2 = emojisWeKnow.sort(() => Math.random() - Math.random()).slice(0, 4);
+var emojisRand2 = emojisWeKnow
+  .sort(() => Math.random() - Math.random())
+  .slice(0, 4);
 
 export default function App() {
-  
-  
-  const [doneFlag, setDoneFlag] = useState(false);
+  // const [doneFlag, setDoneFlag] = useState(false);
 
   return (
     <div className="App">
@@ -483,28 +483,26 @@ export default function App() {
 
       <div className="master-container">
         {emojisRand.map((emoji) => {
-          return (
-            AppRow(emoji, doneFlag)
-          );
+          return AppRow(emoji);
         })}
       </div>
 
-      <h2>Total Score: {score}</h2>
+      {/* <h2>Total Score: {score}</h2> */}
 
       <footer>KG</footer>
     </div>
   );
 }
 
-export function AppRow(emoji, doneFlag) {
+export function AppRow(emoji) {
   const [answer, setAnswer] = useState("");
-  const [score, setScore] = useState(0);
+  // const [score, setScore] = useState(0);
 
   function emojiClickHandler(emojiShown, emoji) {
-    if (emoji === emojiShown && doneFlag === false) {
+    if (emoji === emojiShown) {
       setAnswer("Right");
-      setScore(score+1);
-      // setDoneFlag(true); 
+      // setScore(score+1);
+      // setDoneFlag(true);
     } else {
       setAnswer("Wrong");
     }
@@ -526,7 +524,7 @@ export function AppRow(emoji, doneFlag) {
             </span>
           );
         })}
-        <span>{answer}</span>
+      <span style={{ color: "blue", fontStyle: "italic" }}>{answer}</span>
     </div>
   );
 }

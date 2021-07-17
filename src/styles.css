@@ -32,7 +32,7 @@ footer {
 }
 
 .symbol {
-  font-size: 1.4rem;
+  font-size: 2rem;
   padding: 0.1rem;
   cursor: pointer;
 }
@@ -41,5 +41,8 @@ footer {
   display: grid;
   grid-template-columns: 4fr 1fr 1fr 1fr 1fr 1fr 2fr;
   text-align: left;
-  justify-content: center;
+  padding: 1rem;
+  margin: 0.1rem;
+  grid-gap: 1rem;
+  align-items: center;
 }
