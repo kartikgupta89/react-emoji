@@ -30,3 +30,16 @@ footer {
   background-color: #f5f3ff;
   padding: 0.2rem;
 }
+
+.symbol {
+  font-size: 1.4rem;
+  padding: 0.1rem;
+  cursor: pointer;
+}
+
+.match-container {
+  display: grid;
+  grid-template-columns: 4fr 1fr 1fr 1fr 1fr 1fr 2fr;
+  text-align: left;
+  justify-content: center;
+}

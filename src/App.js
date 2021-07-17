@@ -469,55 +469,64 @@ const emojiDictionary = {
 };
 
 var emojisWeKnow = Object.keys(emojiDictionary);
+var emojisRand = emojisWeKnow.sort(() => 0.5 - Math.random()).slice(0, 5);
+var emojisRand2 = emojisWeKnow.sort(() => Math.random() - Math.random()).slice(0, 4);
 
 export default function App() {
-  const [meaning, setMeaning] = useState("eee hai ...");
-  const [inputValue, setInputValue] = useState("");
-
-  function emojiInputHandler(event) {
-    var userInput = event.target.value;
-    setInputValue(userInput);
-
-    if (userInput === "") {
-      var meaning = "kuch to bolo";
-    } else {
-      meaning = emojiDictionary[userInput];
-      if (meaning === undefined) {
-        meaning = "eee kaa hai!";
-      }
-    }
-    setMeaning(meaning);
-  }
-
-  function emojiClickHandler(emoji) {
-    var meaning = emojiDictionary[emoji];
-    setMeaning(meaning);
-    setInputValue(emoji);
-  }
+  
+  
+  const [doneFlag, setDoneFlag] = useState(false);
 
   return (
     <div className="App">
-      <h1>eee kaun sa Emoji hai?</h1>
-      <input onChange={emojiInputHandler} value={inputValue}></input>
-      <h2>{meaning}</h2>
-      <h4>type nahi kar pa rahe .. ?</h4>
-      <h5>.. achha yahan se koi utha lo. Just Click</h5>
-      {emojisWeKnow.map((emoji) => {
-        return (
-          <span
-            onClick={() => emojiClickHandler(emoji)}
-            style={{
-              fontSize: "1.4rem",
-              padding: "0.1rem",
-              cursor: "pointer"
-            }}
-            key={emoji}
-          >
-            {emoji}
-          </span>
-        );
-      })}
+      <h1>Find the Emoji!</h1>
+
+      <div className="master-container">
+        {emojisRand.map((emoji) => {
+          return (
+            AppRow(emoji, doneFlag)
+          );
+        })}
+      </div>
+
+      <h2>Total Score: {score}</h2>
+
       <footer>KG</footer>
+    </div>
+  );
+}
+
+export function AppRow(emoji, doneFlag) {
+  const [answer, setAnswer] = useState("");
+  const [score, setScore] = useState(0);
+
+  function emojiClickHandler(emojiShown, emoji) {
+    if (emoji === emojiShown && doneFlag === false) {
+      setAnswer("Right");
+      setScore(score+1);
+      // setDoneFlag(true); 
+    } else {
+      setAnswer("Wrong");
+    }
+  }
+
+  return (
+    <div className="match-container">
+      <span> {emojiDictionary[emoji]} </span>
+      {emojisRand2
+        .concat(emoji)
+        .sort(() => 0.5 - Math.random())
+        .map((emojiShown) => {
+          return (
+            <span
+              className="symbol"
+              onClick={() => emojiClickHandler(emojiShown, emoji)}
+            >
+              {emojiShown}
+            </span>
+          );
+        })}
+        <span>{answer}</span>
     </div>
   );
 }
